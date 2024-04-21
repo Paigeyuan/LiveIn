@@ -7,6 +7,16 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        'custom-purple': '#6C57C3', // Adding the custom color
+        'dark-blue': '#161934',
+        'dark-gray': '#292D30',
+        'orange' : '#ECA32A',
+        'violet' : '#554BDD',
+        'violet-hover' : '#7068E0',
+        'orange-hover': '#d2921e',
+        'blue': '#2a3a5c'
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
