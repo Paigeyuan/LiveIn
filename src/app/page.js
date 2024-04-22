@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { ArrowRightIcon, StarIcon } from '@heroicons/react/outline';
 import './globals.css';
 import './ScrollAnimation.css';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 // If you have a separate file for the Navbar component, import it
 
@@ -144,15 +145,24 @@ export default function Page() {
 
   return (
     <>
-      <div
-        style={{
-          backgroundImage: 'url("/cover.png")', // Make sure this path is correct
-          backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-          minHeight: '100vh', // This will ensure that the background covers at least the full height of the viewport
-        }}
-      >
+      <div style={{
+            position: 'relative', 
+            width: '100%', 
+            minHeight: '100vh'
+        }}>
+            <LazyLoadImage
+                src="/cover.png"
+                style={{
+                    width: '100%',
+                    height: '100vh',
+                    objectFit: 'cover',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    zIndex: -1  // Ensure the image is in the background
+                }}
+            />
+      
 
 
         <div className="px-4 sm:px-8 lg:px-8 py-8 lg:py-16 bg-gray-30"> {/* This div replaces "page-padding-2" */}
@@ -187,8 +197,8 @@ export default function Page() {
             </div>
           }
         </div>
-      </div>
-
+        </div>
+  
 
       {/* Transforming the Way You Buy and Rent*/}
       <section className="py-40 bg-gray-50">
