@@ -18,13 +18,14 @@ export default function Page() {
   const [error, setError] = useState([])
   const [success, setSuccess] = useState(false);
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
 
 
   // Handler for form submission
   const handleSubmit = async (event) => {
     event.preventDefault(); 
- 
+    setLoading(true);
   
 
     try {
@@ -381,7 +382,7 @@ export default function Page() {
 
             {/* Newsletter Subscription Form */}
 
-            <div>
+             <div>
               <form onSubmit={handleSubmit} className="mt-4 lg:mt-0 flex flex-col sm:flex-row gap-2">
                 <input
                   type="email"
@@ -392,17 +393,19 @@ export default function Page() {
                   required
                 />
 
-                <button type="submit" className=" bg-orange hover:bg-orange-hover text-white font-semibold py-2 px-4 rounded">Subscribe</button>
+<button type="submit" className="bg-orange hover:bg-orange-hover text-white font-semibold py-2 px-4 rounded" disabled={loading}>
+          {loading ? 'Loading...' : 'Subscribe'}
+        </button>
 
               </form>
             </div>
-            <div className="bg-slate-100 flex flex-col">
+            <div className="flex flex-col">
   {error && <div className={`text-red-600 px-5 py-2`}>{error}</div>}
   {success && <div className={`text-green-800 px-5 py-2`}>{message}</div>}  
+  {loading && <div>Loading...</div>} Optional: Replace with a CSS spinner
 </div>
 
           </div>
-
 
 
 
