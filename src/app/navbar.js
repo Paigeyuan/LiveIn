@@ -1,7 +1,7 @@
 "use client"
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ArrowRightIcon, StarIcon  } from '@heroicons/react/outline'; // Importing for Heroicons v
 import './ScrollAnimation.css';
 import './globals.css';
@@ -10,6 +10,25 @@ import './globals.css';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false); // State to handle mobile menu toggle
+  const menuRef = useRef(); // Reference to the menu for detecting outside clicks
+
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
+
+
+
+
   return (
     <>
       <nav className="navbar font-sans flex justify-between items-center p-4 bg-custom-purple shadow-md sticky top-0 z-50">
@@ -33,7 +52,7 @@ export default function Navbar() {
           </svg>
         </button>
       </div>
-      <div className={`md:flex space-x-4 ${isOpen ? 'block' : 'hidden'}`}>
+      <div ref={menuRef} className={`md:flex space-x-4 ${isOpen ? 'block' : 'hidden'}`}>
         <Link href="/" legacyBehavior>
           <a className="hover:text-purple-300 block px-7 py-2 rounded-md text-base font-medium text-white">Home</a>
         </Link>

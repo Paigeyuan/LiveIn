@@ -8,8 +8,6 @@ import './ScrollAnimation.css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import Image from 'next/image'
 
-// If you have a separate file for the Navbar component, import it
-
 
 export default function Page() {
   // State for the Navbar component
@@ -146,6 +144,7 @@ export default function Page() {
 
   return (
     <>
+
       <div style={{
         position: 'relative',
         width: '100%',
@@ -175,7 +174,7 @@ export default function Page() {
               <div className="py-20 space-y-6"> {/* Corresponds to "hero_content" */}
                 <h1 className="text-5xl text-dark-blue font-medium">Evolving<br /> Real Estate Bidding <br /> with AI</h1>
                 <h1 className="pt-2 pb-6 text-lg text-gray-700">
-                  AI enhances tr  ansparency in real estate bidding <br />
+                  AI enhances transparency in real estate bidding <br />
                   ensuring a fair and open process for all participants.
                 </h1>
                 <div className="md:space-x-4 space-y-4 text-center md:space-y-0 flex flex-col md:flex-row"> {/* This div acts as "button-row" */}
