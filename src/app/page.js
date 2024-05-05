@@ -175,10 +175,10 @@ export default function Page() {
               <div className="py-20 space-y-6"> {/* Corresponds to "hero_content" */}
                 <h1 className="text-5xl text-dark-blue font-medium">Evolving<br /> Real Estate Bidding <br /> with AI</h1>
                 <h1 className="pt-2 pb-6 text-lg text-gray-700">
-                  AI enhances transparency in real estate bidding <br />
+                  AI enhances tr  ansparency in real estate bidding <br />
                   ensuring a fair and open process for all participants.
                 </h1>
-                <div className="space-x-4"> {/* This div acts as "button-row" */}
+                <div className="md:space-x-4 space-y-4 text-center md:space-y-0 flex flex-col md:flex-row"> {/* This div acts as "button-row" */}
                   <a href="/Compare-plans" className="bg-orange hover:bg-orange-hover text-white font-medium py-4 px-4 rounded-lg shadow">Complare Plans</a>
                   <a href="/Buy-token"
                     className="bg-violet hover:bg-violet-hover text-white font-medium py-4 px-4 rounded-lg shadow transition duration-300 ease-in-out"
