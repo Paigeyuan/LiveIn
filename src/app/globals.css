@@ -6,9 +6,9 @@
   --foreground-rgb: 246, 248, 252;
 }
 
-@media (prefers-color-scheme: white) {
+@media () {
   :root {
-    --foreground-rgb: 255, 255, 255;
+    --foreground-rgb:(243, 244, 246);
   }
 }
 
@@ -153,6 +153,11 @@ body {
   background: linear-gradient(to right, red, blue);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+body, html {
+  width: 100%;
+  overflow-x: hidden; /* ป้องกันไม่ให้เนื้อหาที่กว้างเกินไปแสดงออกมา */
 }
 
 
