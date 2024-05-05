@@ -12,7 +12,7 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false); // State to handle mobile menu toggle
   return (
     <>
-      <nav className="font-sans flex justify-between items-center p-4 bg-custom-purple shadow-md sticky top-0 z-50">
+      <nav className="navbar font-sans flex justify-between items-center p-4 bg-custom-purple shadow-md sticky top-0 z-50">
       {/* Logo and brand name */}
       <div className="flex items-center">
         <Link href="/" legacyBehavior>

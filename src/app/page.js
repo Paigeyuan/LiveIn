@@ -1,4 +1,3 @@
-//app/page.js
 "use client"
 // Importing React and other necessary components from their packages
 import React, { useState, useEffect } from 'react';
@@ -7,6 +6,7 @@ import { ArrowRightIcon, StarIcon } from '@heroicons/react/outline';
 import './globals.css';
 import './ScrollAnimation.css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import Image from 'next/image'
 
 // If you have a separate file for the Navbar component, import it
 

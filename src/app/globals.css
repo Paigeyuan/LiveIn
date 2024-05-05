@@ -160,6 +160,16 @@ body, html {
   overflow-x: hidden; /* ป้องกันไม่ให้เนื้อหาที่กว้างเกินไปแสดงออกมา */
 }
 
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  backdrop-filter: blur(1000px); /* Blur effect */
+  -webkit-backdrop-filter: blur(1000px); /* For Safari */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Optional: adds a subtle border */
+}
+
 
 
 
