@@ -17,7 +17,14 @@ export default function Page() {
   const [success, setSuccess] = useState(false);
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const [activeCard, setActiveCard] = useState(null);
 
+
+
+  const handleCardClick = (id) => {
+    // Toggle active state to null if the same card is clicked again, otherwise set to new id
+    setActiveCard(activeCard === id ? null : id);
+  };
 
 
   // Handler for form submission
@@ -148,7 +155,6 @@ export default function Page() {
       <div style={{
         position: 'relative',
         width: '100%',
-        minHeight: '100vh'
       }}>
         <LazyLoadImage
           src="/cover.png"
@@ -165,32 +171,35 @@ export default function Page() {
 
 
 
-        <div className="font-sans px-4 sm:px-8 lg:px-8 py-8 lg:py-16 bg-gray-30">
+        <div className="py-20 font-sans px-4 sm:px-8 lg:px-8 lg:py-16">
           <div className="max-w-screen-xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
 
 
               {/* Hero Content Left */}
-              <div className="py-20 space-y-6"> {/* Corresponds to "hero_content" */}
+              <div className="py-20 space-y-6">
                 <h1 className="text-5xl text-dark-blue font-medium">Evolving<br /> Real Estate Bidding <br /> with AI</h1>
                 <h1 className="pt-2 pb-6 text-lg text-gray-700">
                   AI enhances transparency in real estate bidding <br />
                   ensuring a fair and open process for all participants.
                 </h1>
-                <div className="md:space-x-4 space-y-4 text-center md:space-y-0 flex flex-col md:flex-row"> {/* This div acts as "button-row" */}
-                  <a href="/Compare-plans" className="bg-orange hover:bg-orange-hover text-white font-medium py-4 px-4 rounded-lg shadow">Complare Plans</a>
+                <div className="flex flex-col md:flex-row flex-wrap overflow-hidden md:space-x-4 space-y-4 md:space-y-0 text-center">
+                  <a href="/Compare-plans" className="bg-orange hover:bg-orange-hover text-white font-medium py-4 px-2 md:px-4 rounded-lg shadow m-1 md:m-0">Complare Plans</a>
                   <a href="/Buy-token"
-                    className="bg-violet hover:bg-violet-hover text-white font-medium py-4 px-4 rounded-lg shadow transition duration-300 ease-in-out"
-                    role="button">
+                    className="bg-violet hover:bg-violet-hover text-white font-medium py-4 px-2 md:px-4 rounded-lg shadow m-1 md:m-0 transition duration-300 ease-in-out">
                     Get Token
                   </a>
                 </div>
               </div>
+
+
             </div>
           </div>
 
 
           {/* Conditional rendering based on the showScroll state */}
+
+
 
           <div>
             {showScroll && (
@@ -201,12 +210,12 @@ export default function Page() {
           </div>
 
 
-
-
         </div>
 
+
+
         {/* Transforming the Way You Buy and Rent*/}
-        <section className="font-sans py-40 bg-gray-50">
+        <section className="font-sans py-20 bg-gray-50">
 
           <div className="container mx-auto px-4 lg:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
@@ -256,8 +265,12 @@ export default function Page() {
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
                 {useCases.map(({ id, imgSrc, title, description }) => (
-                  <div key={id} className="shadow-xl tile-for-your-business-use-case w-container group bg-white  hover:bg-purple-200 p-4 rounded-lg transition-all duration-300 ease-in-out transform hover:-translate-y-2 hover:shadow-xl cursor-pointer">
-                    <div className="for-your-business-image flex justify-center">
+                  <div
+                    key={id}
+                    onClick={() => handleCardClick(id)}
+                    className={`shadow-xl tile-for-your-business-use-case w-container group bg-white ${activeCard !== id ? 'hover:bg-purple-200 hover:-translate-y-2 hover:shadow-xl' : ''} p-4 rounded-lg transition-all duration-300 ease-in-out transform cursor-pointer`}
+                  >
+                    <div className="items-center for-your-business-image flex justify-center">
                       <img
                         src={imgSrc}
                         loading="lazy"
@@ -368,7 +381,7 @@ export default function Page() {
 
 
         {/* Stay up to data */}
-        <section className="font-sans py-20 bg-gray-50 border-t border-primary mx-auto px-8 lg:px-10">
+        <section className="font-sans py-20 bg-gray-50 border-t border-primary mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             <div className="py-8">
               {/* Main Content and CTA Buttons */}
