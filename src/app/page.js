@@ -20,11 +20,17 @@ export default function Page() {
   const [activeCard, setActiveCard] = useState(null);
 
 
-
+   
   const handleCardClick = (id) => {
-    // Toggle active state to null if the same card is clicked again, otherwise set to new id
-    setActiveCard(activeCard === id ? null : id);
-  };
+    // Toggle active state: set to null if it's the same card, otherwise update to the new ID
+    setActiveCard(currentActiveCard => currentActiveCard === id ? null : id);
+};
+const handleOutsideClick = (event) => {
+  // Ensure there are no leading or extra spaces in the class selector
+  if (!event.target.closest('.tile-for-your-business-use-case')) {
+      setActiveCard(null); // Deactivate any active card if clicked outside
+  }
+};
 
 
   // Handler for form submission
@@ -55,6 +61,24 @@ export default function Page() {
       setError('Error during subscription process. Please try again.');
     }
   };
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+        // Correctly formatted selector
+        if (!event.target.closest('.tile-for-your-business-use-case')) {
+            setActiveCard(null);
+        }
+    };
+
+    // Attach the listener to the document
+    document.addEventListener('click', handleOutsideClick);
+
+    // Cleanup the listener on component unmount
+    return () => {
+        document.removeEventListener('click', handleOutsideClick);
+    };
+}, []);
+
 
   useEffect(() => {
     const checkScrollTop = () => {
@@ -250,8 +274,6 @@ export default function Page() {
 
 
         <section className="font-sans py-20 bg-gray-50">
-
-
           <div className="pb-10">
             <h2 className="pb-10 text-center text-4xl font-semibold text-dark-blue">
               Streamlined Bidding with AI Assistance
@@ -261,14 +283,14 @@ export default function Page() {
 
 
 
-
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-20">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-20 items-center justify-center">
                 {useCases.map(({ id, imgSrc, title, description }) => (
                   <div
                     key={id}
                     onClick={() => handleCardClick(id)}
-                    className={`shadow-xl tile-for-your-business-use-case w-container group bg-white ${activeCard !== id ? 'hover:bg-purple-200 hover:-translate-y-2 hover:shadow-xl' : ''} p-4 rounded-lg transition-all duration-300 ease-in-out transform cursor-pointer`}
+                    
+                    
+                    className={`shadow-xl tile-for-your-business-use-case w-container group ${activeCard === id ? 'bg-purple-100' : 'bg-white'} ${activeCard !== id && '-translate-y-2 shadow-xl'}  p-4 rounded-lg transition-all duration-300 ease-in-out transform cursor-pointer`}
                   >
                     <div className="items-center for-your-business-image flex justify-center">
                       <img

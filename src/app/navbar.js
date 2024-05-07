@@ -27,6 +27,10 @@ export default function Navbar() {
   }, [isOpen]);
 
 
+    // Function to close the navbar on item click
+    const closeMenu = () => {
+      setIsOpen(false);
+    };
 
 
   return (
@@ -54,19 +58,19 @@ export default function Navbar() {
       </div>
       <div ref={menuRef} className={`md:flex space-x-4 ${isOpen ? 'block' : 'hidden'}`}>
         <Link href="/" legacyBehavior>
-          <a className="hover:text-purple-300 block px-7 py-2 rounded-md text-base font-medium text-white">Home</a>
+          <a className="hover:text-purple-300 block px-7 py-2 rounded-md text-base font-medium text-white" onClick={closeMenu}>Home</a>
         </Link>
         <Link href="/Document" legacyBehavior>
-          <a className="hover:text-purple-300 block px-3 py-2 rounded-md text-base font-medium text-white">Document</a>
+          <a className="hover:text-purple-300 block px-3 py-2 rounded-md text-base font-medium text-white" onClick={closeMenu}>Document</a>
         </Link>
         <Link href="/contact" legacyBehavior>
-          <a className="hover:text-purple-300 block px-3 py-2 rounded-md text-base font-medium text-white">Contact</a>
+          <a className="hover:text-purple-300 block px-3 py-2 rounded-md text-base font-medium text-white" onClick={closeMenu}>Contact</a>
         </Link>
         <Link href="/Buy-token" legacyBehavior>
-          <a className="hover:text-purple-300 block px-3 py-2 rounded-md text-base font-medium text-white">Buy Token</a>
+          <a className="hover:text-purple-300 block px-3 py-2 rounded-md text-base font-medium text-white" onClick={closeMenu}>Buy Token</a>
         </Link>
         <Link href="/" legacyBehavior>
-          <button className="flex items-center text-white bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-md border border-transparent hover:border-white transition-all">
+          <button className="flex items-center text-white bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-md border border-transparent hover:border-white transition-all" onClick={closeMenu}>
             Try Live In
             <ArrowRightIcon className="ml-2 w-5 h-5" />
           </button>
